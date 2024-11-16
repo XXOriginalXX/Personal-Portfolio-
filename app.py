@@ -16,5 +16,6 @@ def predict():
     prediction = model.predict(df)[0]  # Make prediction
     return jsonify({'prediction': prediction})  # Send prediction back
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)  # Use port 5000 or the port Render specifies
+

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adithyan S Pillai</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css"> <!-- Ensure this path is correct -->
 </head>
 <body>
     <!-- Navigation -->
@@ -15,6 +15,7 @@
             <li><a href="#resume">Resume</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><a href="adanimodel.html">Adani Port Price Prediction</a></li>
         </ul>
     </nav>
 
@@ -23,7 +24,8 @@
         <h1>Hey,</h1>
         <p>I am Adithyan,</p>
         <small>I like to code and drive...</small>
-        <img src="adithyan.png" alt="Adithyan's Picture">
+        <!-- Make sure the image has the 'profile-image' class -->
+        <img class="profile-image" src="adithyan.png" alt="Adithyan's Picture">
     </section>
 
     <!-- About Section -->
@@ -52,19 +54,6 @@
     <section id="contact">
         <h2>Contact Me</h2>
         <p>Email: adithyanspk@gmail.com<br>LinkedIn: <a href="#">View Profile</a></p>
-    </section>
-    <section id="stock-prediction">
-        <h2>Adani Stock Prediction</h2>
-        <form id="prediction-form">
-            <label for="input1">Feature 1:</label>
-            <input type="text" id="input1" required><br>
-            <label for="input2">Feature 2:</label>
-            <input type="text" id="input2" required><br>
-            <!-- Add more inputs as required -->
-            <button type="submit">Predict</button>
-        </form>
-        <p id="loading" style="display: none;">Loading...</p>
-        <p id="result"></p>
     </section>
     
     <!-- Footer -->

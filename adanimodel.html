@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADANI Port Price Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-top: 20px;
+        }
+        label {
+            font-size: 14px;
+            margin-bottom: 6px;
+            display: block;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h3 {
+            color: #333;
+            margin-top: 20px;
+        }
+        span {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <h1>ADANI Port Price Prediction</h1>
+    <form id="prediction-form">
+        <label for="Open">Open:</label>
+        <input type="number" id="Open" name="Open" required>
+
+        <label for="High">High:</label>
+        <input type="number" id="High" name="High" required>
+
+        <label for="Low">Low:</label>
+        <input type="number" id="Low" name="Low" required>
+
+        <label for="Volume">Volume:</label>
+        <input type="number" id="Volume" name="Volume" required>
+
+        <label for="Turnover">Turnover:</label>
+        <input type="number" id="Turnover" name="Turnover" required>
+
+        <button type="submit">Get Prediction</button>
+    </form>
+
+    <h3>Predicted Close Price: <span id="result"></span></h3>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                'Open': parseFloat(formData.get('Open')),
+                'High': parseFloat(formData.get('High')),
+                'Low': parseFloat(formData.get('Low')),
+                'Volume': parseInt(formData.get('Volume')),
+                'Turnover': parseFloat(formData.get('Turnover'))
+            };
+
+            fetch('http://localhost:5000/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data['Predicted Close Price']) {
+                    document.getElementById('result').textContent = data['Predicted Close Price'];
+                } else {
+                    document.getElementById('result').textContent = 'Error: ' + data['error'];
+                }
+            })
+            .catch((error) => {
+                document.getElementById('result').textContent = 'Error: ' + error.message;
+            });
+        });
+    </script>
+</body>
+</html>

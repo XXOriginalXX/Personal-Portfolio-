@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adithyan S Pillai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Hey,</h1>
+        <p>I am Adithyan,</p>
+        <small>I like to code and drive...</small>
+        <img src="adithyan.png" alt="Adithyan's Picture">
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I’m a Computer Science student specializing in AI and ML. I have hands-on experience with machine learning, Python, and software development.</p>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+        <h2>Resume</h2>
+        <a href="resume.pdf" download>Download My Resume</a>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <p>
+            <b>Stock Price Prediction:</b> Built a predictive model using historical data to forecast stock prices.<br>
+            <b>8-Puzzle Solver:</b> Developed a DFS-based algorithm to solve the 8-puzzle problem.<br>
+            <b>Water Jug Problem Solver:</b> Implemented BFS to solve water jug puzzles efficiently.
+        </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Me</h2>
+        <p>Email: adithyanspk@gmail.com<br>LinkedIn: <a href="#">View Profile</a></p>
+    </section>
+    <section id="stock-prediction">
+        <h2>Adani Stock Prediction</h2>
+        <form id="prediction-form">
+            <label for="input1">Feature 1:</label>
+            <input type="text" id="input1" required><br>
+            <label for="input2">Feature 2:</label>
+            <input type="text" id="input2" required><br>
+            <!-- Add more inputs as required -->
+            <button type="submit">Predict</button>
+        </form>
+        <p id="loading" style="display: none;">Loading...</p>
+        <p id="result"></p>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        &copy; 2024 Adithyan S Pillai. All rights reserved.
+    </footer>
+</body>
+</html>

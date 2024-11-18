@@ -4,7 +4,6 @@ app = Flask(__name__)
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
-        # Extract data from the request
         data = request.get_json()
         open_price = data['Open']
         high_price = data['High']
@@ -12,7 +11,6 @@ def predict():
         volume = data['Volume']
         turnover = data['Turnover']
         
-        # Your model prediction logic here
         predicted_price = model.predict([open_price, high_price, low_price, volume, turnover])
         
         return jsonify({"Predicted Close Price": predicted_price[0]})

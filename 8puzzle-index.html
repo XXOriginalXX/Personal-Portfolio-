@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8-Puzzle Solver</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e9f5e9;
+            color: #2d6a4f;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #40916c;
+        }
+
+        #puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+            justify-content: center;
+            margin: 20px auto;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #95d5b2;
+            border: 2px solid #40916c;
+            cursor: pointer;
+        }
+
+        .empty {
+            background-color: #e9f5e9;
+            cursor: default;
+        }
+
+        #controls {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            background-color: #52b788;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #40916c;
+        }
+    </style>
+</head>
+<body>
+    <h1>8-Puzzle Solver</h1>
+    <div id="puzzle-container"></div>
+    <div id="controls">
+        <button id="shuffle">Shuffle</button>
+        <button id="hint">Hint</button>
+        <button id="solve">Solve</button>
+    </div>
+    <script src="8puzzle-script.js"></script>
+</body>
+</html>

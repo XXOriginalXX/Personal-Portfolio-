@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>8-Puzzle Solver</title>
     <style>
+        
         body {
-            font-family: Arial, sans-serif;
-            background-color: #e9f5e9;
-            color: #2d6a4f;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #121212, #222831);
+            color: #ffffff;
             text-align: center;
             padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
         }
 
         h1 {
-            color: #40916c;
+            color: #00adb5;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px #00adb5, 0 0 30px #00adb5;
         }
 
         #puzzle-container {
@@ -22,44 +28,67 @@
             grid-template-columns: repeat(3, 100px);
             gap: 10px;
             justify-content: center;
-            margin: 20px auto;
+            margin: 30px auto;
         }
 
         .tile {
             width: 100px;
             height: 100px;
-            font-size: 24px;
+            font-size: 2rem;
             font-weight: bold;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #95d5b2;
-            border: 2px solid #40916c;
+            border-radius: 12px;
+            color: #ffffff;
             cursor: pointer;
+            background: linear-gradient(145deg, #393e46, #00adb5);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3), 0 4px 10px rgba(0, 173, 181, 0.5);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .tile:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 173, 181, 0.7), 0 0 20px rgba(0, 173, 181, 0.5);
         }
 
         .empty {
-            background-color: #e9f5e9;
+            background: none;
+            box-shadow: none;
             cursor: default;
         }
 
         #controls {
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         button {
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 16px;
-            background-color: #52b788;
-            color: white;
+            padding: 12px 25px;
+            margin: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            background: linear-gradient(145deg, #00adb5, #393e46);
+            color: #ffffff;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
         }
 
         button:hover {
-            background-color: #40916c;
+            background: linear-gradient(145deg, #007f85, #222831);
+            box-shadow: 0 4px 15px rgba(0, 173, 181, 0.6), 0 0 15px rgba(0, 173, 181, 0.3);
+        }
+
+        
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 15px rgba(0, 173, 181, 0.5), 0 0 25px rgba(0, 173, 181, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(0, 173, 181, 0.8), 0 0 40px rgba(0, 173, 181, 1);
+            }
         }
     </style>
 </head>

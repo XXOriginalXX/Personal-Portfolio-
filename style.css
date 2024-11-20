@@ -91,12 +91,11 @@ nav ul li a:hover {
     width: 500px; 
     height: 500px; 
     border-radius: 50%; 
-    object-fit: cover;
-    object-position: center;
+    object-fit: cover; 
+    object-position: center; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
-    animation: fadeInImage 3s ease-out; 
+    animation: fadeInImage 3s ease-out;
 }
-
 
 
 .profile-image:hover {
@@ -153,4 +152,147 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+.models-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.model {
+    text-align: center;
+    background: #1e1e2f;
+    padding: 20px;
+    border-radius: 10px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.model:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.model .can {
+    width: 150px;
+    height: 300px;
+    margin: 0 auto 15px;
+    background: var(--url) no-repeat center center;
+    background-size: cover;
+    transition: transform 0.7s ease;
+    mask-image: url('images/mockup.png'); 
+    mask-size: contain;
+}
+
+.model:hover .can {
+    transform: rotateY(360deg);
+}
+
+.model p {
+    color: #bbbbbb;
+    font-size: 0.9rem;
+    margin: 10px 0;
+}
+
+.model a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    background: #a777e3;
+    color: #ffffff;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.model a:hover {
+    background: #ffffff;
+    color: #a777e3;
+}
+/* General Styles */
+.models-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    gap: 20px;
+}
+
+.card {
+    width: 250px;
+    height: 400px;
+    perspective: 1000px; 
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d; 
+    transition: transform 0.8s ease-in-out;
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg); 
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; 
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: #1e1e2f;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-front {
+    background-color: #2e2e3f;
+    padding: 20px;
+}
+
+.card-front img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.card-back {
+    transform: rotateY(180deg); 
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card-back p {
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: #a777e3;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.btn:hover {
+    background: white;
+    color: #a777e3;
 }

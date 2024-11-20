@@ -94,8 +94,9 @@ nav ul li a:hover {
     object-fit: cover; 
     object-position: center; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); 
-    animation: fadeInImage 3s ease-out;
+    animation: fadeInImage 3s ease-out; 
 }
+
 
 
 .profile-image:hover {

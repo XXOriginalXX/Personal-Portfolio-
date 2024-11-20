@@ -12,7 +12,6 @@ const goalState = [
 let currentState = JSON.parse(JSON.stringify(goalState));
 let solutionPath = [];
 
-
 function renderPuzzle(state) {
     puzzleContainer.innerHTML = "";
     state.flat().forEach((value, index) => {
@@ -25,7 +24,6 @@ function renderPuzzle(state) {
     });
 }
 
-
 function findEmptyTile(state) {
     for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
@@ -33,7 +31,6 @@ function findEmptyTile(state) {
         }
     }
 }
-
 
 function generateMoves(state) {
     const [x, y] = findEmptyTile(state);
@@ -58,20 +55,28 @@ function generateMoves(state) {
     return moves;
 }
 
-
-function statesEqual(state1, state2) {
-    return JSON.stringify(state1) === JSON.stringify(state2);
+function calculateHeuristic(state) {
+    let distance = 0;
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            const value = state[i][j];
+            if (value !== 0) {
+                const goalX = Math.floor((value - 1) / 3);
+                const goalY = (value - 1) % 3;
+                distance += Math.abs(i - goalX) + Math.abs(j - goalY);
+            }
+        }
+    }
+    return distance;
 }
 
-
 function aStar(start, goal) {
-    const priorityQueue = [];
-    priorityQueue.push({ state: start, path: [] });
+    const heap = [{ state: start, path: [], cost: 0 }];
     const visited = new Set();
 
-    while (priorityQueue.length > 0) {
-        priorityQueue.sort((a, b) => a.path.length - b.path.length);
-        const { state, path } = priorityQueue.shift();
+    while (heap.length > 0) {
+        heap.sort((a, b) => (a.cost + calculateHeuristic(a.state)) - (b.cost + calculateHeuristic(b.state)));
+        const { state, path } = heap.shift();
 
         if (statesEqual(state, goal)) return path.concat([state]);
 
@@ -79,9 +84,10 @@ function aStar(start, goal) {
 
         generateMoves(state).forEach(nextState => {
             if (!visited.has(JSON.stringify(nextState))) {
-                priorityQueue.push({
+                heap.push({
                     state: nextState,
-                    path: path.concat([state])
+                    path: path.concat([state]),
+                    cost: path.length + 1
                 });
             }
         });
@@ -90,6 +96,25 @@ function aStar(start, goal) {
     return null;
 }
 
+function isSolvable(state) {
+    const flat = state.flat().filter(n => n !== 0);
+    let inversions = 0;
+    for (let i = 0; i < flat.length; i++) {
+        for (let j = i + 1; j < flat.length; j++) {
+            if (flat[i] > flat[j]) inversions++;
+        }
+    }
+    return inversions % 2 === 0;
+}
+
+function shufflePuzzle() {
+    let shuffled;
+    do {
+        shuffled = [...goalState.flat()].sort(() => Math.random() - 0.5);
+        shuffled = [shuffled.slice(0, 3), shuffled.slice(3, 6), shuffled.slice(6)];
+    } while (!isSolvable(shuffled));
+    return shuffled;
+}
 
 function handleTileClick(e) {
     const index = parseInt(e.target.dataset.index);
@@ -107,18 +132,15 @@ function handleTileClick(e) {
     }
 }
 
+function statesEqual(state1, state2) {
+    return JSON.stringify(state1) === JSON.stringify(state2);
+}
 
 shuffleButton.addEventListener("click", () => {
-    currentState = JSON.parse(JSON.stringify(goalState));
-    for (let i = 0; i < 100; i++) {
-        const moves = generateMoves(currentState);
-        const randomMove = moves[Math.floor(Math.random() * moves.length)];
-        currentState = randomMove;
-    }
+    currentState = shufflePuzzle();
     solutionPath = aStar(currentState, goalState) || [];
     renderPuzzle(currentState);
 });
-
 
 hintButton.addEventListener("click", () => {
     if (solutionPath.length > 1) {
@@ -129,7 +151,6 @@ hintButton.addEventListener("click", () => {
         alert("You're already at the goal state or need to shuffle first!");
     }
 });
-
 
 solveButton.addEventListener("click", () => {
     if (solutionPath.length > 0) {
@@ -148,12 +169,10 @@ solveButton.addEventListener("click", () => {
     }
 });
 
-
 puzzleContainer.addEventListener("click", e => {
     if (e.target.classList.contains("tile")) {
         handleTileClick(e);
     }
 });
-
 
 renderPuzzle(currentState);
